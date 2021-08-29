@@ -10,22 +10,19 @@ import pages.MainPage;
 import java.util.concurrent.TimeUnit;
 
 import static com.saucedemo.LoginTest.loginPage;
-import static com.saucedemo.LoginTest.profilePage;
+import static com.saucedemo.LoginTest.mainPage;
 
 public class UITests extends BaseTest {
 
-    @Test
-    public void loginTest() {
-
-        loginPage.inputLogin(ConfProperties.getProperty("login"));
-
-        loginPage.clickLoginBtn();
-
-        loginPage.inputPasswd(ConfProperties.getProperty("password"));
-        loginPage.clickLoginBtn();
-
-
-    }
+//    @Test
+//    public void loginTest() {
+//
+//        loginPage.inputLogin(ConfProperties.getProperty("login"));
+//                loginPage.inputPasswd(ConfProperties.getProperty("password"));
+//        loginPage.clickLoginBtn();
+//
+//
+//    }
 
 
 
@@ -36,7 +33,6 @@ public class UITests extends BaseTest {
 
     @Test
     public void orderProductTest() throws InterruptedException {
-        mainPage.clickAddToCart();
         mainPage.clickCartBtn();
         cartPage.clickCheckoutBtn();
         checkoutPage.inputFirstName(ConfProperties.getProperty("firstName"));
@@ -55,6 +51,26 @@ public class UITests extends BaseTest {
         mainPage.clickHiloSort();
         mainPage.clickZaSort();
         mainPage.clickAzSort();
+
+    }
+
+    @Test
+    public void emptyFieldsErrorTest(){
+        mainPage.clickAddToCart();
+        mainPage.clickCartBtn();
+        cartPage.clickCheckoutBtn();
+        checkoutPage.clickContinueBtn();
+        Assert.assertTrue(checkoutPage.errorMessage().equals("Error: First Name is required"));
+
+    }
+
+    @Test
+    public void deleteFromCart(){
+        mainPage.clickAddToCart();
+        mainPage.clickCartBtn();
+        cartPage.clickRemoveFromCartBtn();
+        Assert.assertTrue(cartPage.cartIsEmpty());
+
 
     }
 

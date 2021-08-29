@@ -24,6 +24,9 @@ public class CartPage {
     @FindBy(xpath = "//*[contains(@id, 'checkout')]")
     private WebElement checkoutBtn;
 
+    @FindBy (xpath = "//div[@class='removed_cart_item']")
+    WebElement removedCartItem;
+
     public void clickContinueShoppingBtn() {
         continueShoppingBtn.click();
     }
@@ -34,6 +37,10 @@ public class CartPage {
 
     public void clickCheckoutBtn() {
         checkoutBtn.click();
+    }
+
+    public boolean cartIsEmpty(){
+        return removedCartItem.isEnabled();
     }
 
 }

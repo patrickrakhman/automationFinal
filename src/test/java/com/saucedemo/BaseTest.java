@@ -7,6 +7,7 @@ import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
+
 public class BaseTest {
     public static LoginPage loginPage;
     public static MainPage mainPage;
@@ -33,10 +34,18 @@ public class BaseTest {
         System.out.println("Start");
     }
 
-    @BeforeTest
-    public void info(){
-        System.out.println("next test");
+
+
+    @BeforeMethod
+    public void beforeTest() {
+        driver.get(ConfProperties.getProperty("loginpage"));
+        loginPage.inputLogin(ConfProperties.getProperty("login"));
+        loginPage.inputPasswd(ConfProperties.getProperty("password"));
+        loginPage.clickLoginBtn();
     }
+
+    @AfterMethod
+    public void afterMethod() {}
 
     @AfterClass
     public void close(){

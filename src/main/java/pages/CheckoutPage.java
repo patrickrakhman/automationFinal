@@ -38,12 +38,19 @@ public class CheckoutPage {
     public void inputCode(String code) {
         postalCodeField.sendKeys(code); }
 
+    @FindBy(xpath = "//*[contains(text(), 'Error: First Name is required')]")
+    private WebElement error;
+
     public void clickCancelBtn() {
         cancelBtn.click();
     }
 
     public void clickContinueBtn() {
         continueBtn.click();
+    }
+
+    public String errorMessage (){
+        return error.getText();
     }
 
 }

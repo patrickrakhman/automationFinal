@@ -22,6 +22,10 @@ public class CheckoutOverviewPage {
     @FindBy(xpath = "//*[contains(@id, 'back-to-products')]")
     private WebElement homeBtn;
 
+
+
+
+
     public void clickFinishBtn() {
         finishBtn.click();
     }
@@ -33,5 +37,7 @@ public class CheckoutOverviewPage {
     public void clickHomeBtn() {
         homeBtn.click();
     }
+
+
 
 }
